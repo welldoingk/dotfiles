@@ -1,7 +1,18 @@
 # tmux 자동 시작 (SSH 세션에서만, 이미 tmux 안이면 스킵)
 # p10k instant prompt 전에 실행되어야 함
 if [[ -n "$SSH_CONNECTION" ]] && [[ -z "$TMUX" ]]; then
-  exec tmux attach 2>/dev/null || exec tmux new
+  # X11 DISPLAY를 tmux에 전달 (ssh -X 사용 시)
+  if [[ -n "$DISPLAY" ]]; then
+    tmux set-environment -g DISPLAY "$DISPLAY" 2>/dev/null
+  fi
+  tmux attach 2>/dev/null || exec tmux new-session
+fi
+
+# tmux 안에서 DISPLAY 자동 갱신 (기존 창에서도 X11 사용 가능)
+if [[ -n "$TMUX" ]]; then
+  _display=$(tmux show-environment DISPLAY 2>/dev/null | grep -v '^-' | cut -d= -f2)
+  [[ -n "$_display" ]] && export DISPLAY="$_display"
+  unset _display
 fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
