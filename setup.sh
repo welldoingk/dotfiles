@@ -57,6 +57,13 @@ if [[ "$apply_claude" =~ ^[yY]$ ]]; then
     -e "s|{{HOME_DIR}}|$home_dir|g" \
     "$DOTFILES_DIR/claude/settings.json.template" > ~/.claude/settings.json
 
+  # 서브에이전트 복사
+  if [[ -d "$DOTFILES_DIR/claude/agents" ]]; then
+    mkdir -p ~/.claude/agents
+    cp "$DOTFILES_DIR/claude/agents/"*.md ~/.claude/agents/
+    echo "  agents ($(ls "$DOTFILES_DIR/claude/agents/"*.md | wc -l)개) ✓"
+  fi
+
   echo "  CLAUDE.md, settings.json ✓"
 else
   echo "  건너뜀"

@@ -11,8 +11,9 @@ Personal dotfiles - tmux, zsh, vim, git, Claude Code 설정.
 ├── .vimrc                  # vim 설정
 ├── .gitconfig              # git user 설정
 ├── claude/
-│   ├── CLAUDE.md.template  # Claude Code 지시사항 템플릿
-│   └── settings.json.template  # Claude Code 설정 템플릿
+│   ├── CLAUDE.md.template      # Claude Code 지시사항 템플릿
+│   ├── settings.json.template  # Claude Code 설정 템플릿
+│   └── agents/                 # 서브에이전트 정의 (10개)
 ├── scripts/
 │   └── tmux-sysmon.sh      # tmux 상태바 시스템 모니터
 └── setup.sh                # 자동 설치 스크립트
