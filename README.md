@@ -1,6 +1,6 @@
 # Dotfiles
 
-Personal dotfiles - tmux, zsh, vim configuration.
+Personal dotfiles - tmux, zsh, vim, git, Claude Code 설정.
 
 ## Contents
 
@@ -9,30 +9,23 @@ Personal dotfiles - tmux, zsh, vim configuration.
 ├── .tmux.conf              # tmux 설정 (Catppuccin 테마)
 ├── .zshrc                  # zsh 설정
 ├── .vimrc                  # vim 설정
-└── scripts/
-    └── tmux-sysmon.sh      # tmux 상태바 시스템 모니터
+├── .gitconfig              # git user 설정
+├── claude/
+│   ├── CLAUDE.md.template  # Claude Code 지시사항 템플릿
+│   └── settings.json.template  # Claude Code 설정 템플릿
+├── scripts/
+│   └── tmux-sysmon.sh      # tmux 상태바 시스템 모니터
+└── setup.sh                # 자동 설치 스크립트
 ```
 
 ## Installation
 
 ```bash
-# 리포지토리 클론
 git clone https://github.com/welldoingk/dotfiles.git ~/dotfiles
-
-# 심볼릭 링크 생성
-ln -sf ~/dotfiles/.tmux.conf ~/.tmux.conf
-ln -sf ~/dotfiles/.zshrc ~/.zshrc
-ln -sf ~/dotfiles/.vimrc ~/.vimrc
-
-# 시스템 모니터 스크립트 링크
-mkdir -p ~/.local/bin
-ln -sf ~/dotfiles/scripts/tmux-sysmon.sh ~/.local/bin/tmux-sysmon.sh
-
-# TPM (Tmux Plugin Manager) 설치
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# tmux 실행 후 플러그인 설치: prefix + I
+cd ~/dotfiles && ./setup.sh
 ```
+
+설치 시 Claude Code 설정에 필요한 경로(Obsidian API, Telegram 그룹 ID)를 대화형으로 입력받습니다.
 
 ## tmux
 
